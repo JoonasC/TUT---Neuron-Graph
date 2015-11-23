@@ -1,0 +1,148 @@
+/* Copyright © TUT 2015 */
+@font-face {
+	font-family: Quicksand;
+	src: url(../fonts/Quicksand-Regular.otf);
+}
+@font-face {
+	font-family: Quicksand-Bold;
+	src: url(../fonts/Quicksand-Bold.otf);
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #F7F7F7;
+	padding-top: 104px;
+}
+.header {
+	box-shadow: 0 3px 3px #000000;
+	font-family: Quicksand-Bold;
+	background-color: #FFFFFF;
+	width: 100%;
+	position: fixed;
+	top: 0;
+}
+.logo-header {
+	display: inline-block;
+	vertical-align: middle;
+}
+.header-text {
+	display: inline-block;
+	vertical-align: middle;
+}
+.site-content {
+	background-color: #FFFFFF;
+	width: 100%;
+	text-align: center;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	border-top: 1px solid #00667A;
+	border-bottom: 1px solid #00667A;
+}
+.text {
+	font-family: Quicksand;
+}
+.help-text {
+	color: #00AED1;
+}
+.margin-bottom {
+	margin-bottom: 15px;
+}
+.margin-right {
+	margin-right: 5px;
+}
+.display-inline-block {
+	display: inline-block;
+}
+.lowercase {
+	text-transform: lowercase;
+}
+.start-button {
+	background-color: #00AED1;
+	text-decoration: none;
+	color: #FFFFFF;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0 5px 0 #00667A;
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	font-family: Quicksand;
+}
+.start-button:hover {
+	padding-top: 5px;
+	box-shadow: 0 3px 0 #00667A;
+}
+.neuron-box {
+	border: 1px solid #00667A;
+	width: 420px;
+	margin: 0 auto;
+	background-color: #A7E6F2;
+	cursor: move;
+}
+.separator-div {
+	margin-bottom: 10px;
+}
+a {
+	text-decoration: none;
+	color: #00AED1;
+	font-family: Quicksand;
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+}
+a:hover {
+	color: #00667A;
+}
+.box-control {
+	float: right;
+	background-color: #00AED1;
+	color: #00667A;
+	padding: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-left: 1px solid #00667A;
+	border-bottom: 1px solid #00667A;
+}
+.box-control:hover {
+	color: #00AED1;
+	background-color: #00667A;
+}
+.main {
+	border: 1px solid 
+}
+.textbox {
+	margin-left: 5px;
+	background-color: #00AED1;
+	border: 1px solid #00667A;
+	border-radius: 2px;
+	color: #FFFFFF;
+	font-family: Quicksand;
+}
+.maxlength-2 {
+	width: 25px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.select {
+	background-color: #00AED1;
+	border: 1px solid #00667A;
+	color: #FFFFFF;
+	border-radius: 2px;
+}
+.footer {
+	height: 50px;
+	background-color: #FFFFFF;
+	bottom: 0;
+	width: 100%;
+	position: fixed;
+	text-align: center;
+	border-top: 1px solid #00667A;
+}
+.footer-text {
+	margin-top: 13px;
+	font-size: 18px;
+}

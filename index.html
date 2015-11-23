@@ -1,0 +1,56 @@
+<!-- Copyright © TUT 2015 -->
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="jQuery/jQuery.js"></script>
+<script type="text/javascript" src="jQuery-Ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/graph.js"></script>
+<title>TUT - Neuron Graph</title>
+</head>
+<body>
+<div class="site-container">
+	<div class="header">
+		<a href="#"><img class="logo-header" src="images/logo.png"></a>
+		<h1 class="header-text">TUT - Neuron Graph</h1>
+	</div>
+	<div class="site-content">
+		<div class="start">
+			<p class="text margin-bottom">Welcome to the TUT - Neuron Graph site.</p>
+			<a href="#" class="start-button" onclick="gCreate();">Create a new graph</a>
+			<a href="#" class="start-button" onclick="gOpen();">Open an already created graph</a>
+		</div>
+		<br>
+		<br>
+		<div class="neuron-graph-wizard">
+			<div class="neuron-box">
+				<a href="#" class="box-control main" style="display: none;">+</a>
+				<div class="box-content">
+					<div class="separator-div">
+						<p class="text display-inline-block">Neuron id:</p><input type="textbox" maxlength="2" class="textbox maxlength-2 display-inline-block" /><a class="box-control second" href="#">-</a>
+					</div>
+					<div class="separator-div">
+						<p class="text display-inline-block">Links to neuron(s):</p><input type="textbox" class="textbox lowercase display-inline-block margin-right" /><a class="help-a link-help" href="#">?</a>
+						<p class="text help-text link-help-text" style="display: none;">Enter the links like this: Id of neuron to link to.number of links to that neuron. Eg: 1N.500. Separate the links by commas.</p>
+					</div>
+					<div class="separator-div">
+						<p class="text display-inline-block">Neuron type:</p>
+						<select class="select">
+							<option value="axon">Axon</option>
+							<option value="dendrite">Dendrite</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="neuron-graph" style="display: none;">
+		</div>
+	</div>
+</div>
+<div class="footer">
+	<p class="text footer-text">Copyright © TUT 2015</p>
+</div>
+</body>
+</html>
