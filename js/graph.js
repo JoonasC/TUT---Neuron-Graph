@@ -1,5 +1,6 @@
 //Copyright © TUT 2015
 var lastElement = "";
+var physics = "on";
 function unsuppressClick()
 {
 	$(lastElement).children(".main").removeClass("suppress-click")
@@ -51,6 +52,35 @@ function gCreate()
 {
 	
 }
+function togglePhysics()
+{
+	if(physics == "on")
+	{
+		d3.selectAll(".neuron")
+			.classed("fixed", function(d){ d.fixed = true });
+		$(".checkbox-button").removeClass("checkbox-button-on");
+		$(".checkbox-button").addClass("checkbox-button-off");
+		$(".indicator").fadeOut(250, function()
+		{
+			$(".indicator").text("X");
+			$(".indicator").fadeIn(250);
+		});
+		physics = "off";
+	}
+	else if(physics == "off")
+	{
+		d3.selectAll(".neuron")
+			.classed("fixed", function(d){ d.fixed = false });
+		$(".checkbox-button").removeClass("checkbox-button-off");
+		$(".checkbox-button").addClass("checkbox-button-on");
+		$(".indicator").fadeOut(250, function()
+		{
+			$(".indicator").text("\u2713");
+			$(".indicator").fadeIn(250);
+		});
+		physics = "on";
+	}
+}
 function gOpen()
 {
 	var fLocation = window.prompt("Please enter the name of the json file(make sure the file is in the same directory):");
@@ -63,8 +93,8 @@ function gOpen()
 		$(".start").css("display", "none");
 		$(".neuron-graph").removeAttr("style");
 		var force = d3.layout.force()
-			.charge(-120)
-			.linkDistance(50)
+			.charge(-1550)
+			.linkDistance(300)
 			.size([width, height]);
 		var svg = d3.select(".graph");
 		d3.json(fLocation, function(error, graph)
@@ -78,7 +108,7 @@ function gOpen()
 				.data(graph.Links)
 				.enter().append("line")
 				.attr("class", "link")
-				.style("stroke-width", function(d) { return Math.sqrt(d.value); });
+				.style("stroke-width", 1);
 			var neuron = svg.selectAll(".neuron")
 				.data(graph.id)
 				.enter().append("circle")
