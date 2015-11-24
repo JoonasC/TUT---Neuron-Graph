@@ -7,6 +7,7 @@
 <link type="text/css" rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="jQuery/jQuery.js"></script>
 <script type="text/javascript" src="jQuery-Ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="d3/d3.min.js"></script>
 <script type="text/javascript" src="js/graph.js"></script>
 <title>TUT - Neuron Graph</title>
 </head>
@@ -22,9 +23,7 @@
 			<a href="#" class="start-button" onclick="gCreate();">Create a new graph</a>
 			<a href="#" class="start-button" onclick="gOpen();">Open an already created graph</a>
 		</div>
-		<br>
-		<br>
-		<div class="neuron-graph-wizard">
+		<div class="neuron-graph-wizard" style="display: none;">
 			<div class="neuron-box">
 				<a href="#" class="box-control main" style="display: none;">+</a>
 				<div class="box-content">
@@ -46,6 +45,9 @@
 			</div>
 		</div>
 		<div class="neuron-graph" style="display: none;">
+			<svg class="graph">
+				
+			</svg>
 		</div>
 	</div>
 </div>

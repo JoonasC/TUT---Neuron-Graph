@@ -53,5 +53,48 @@ function gCreate()
 }
 function gOpen()
 {
-	
+	var fLocation = window.prompt("Please enter the name of the json file(make sure the file is in the same directory):");
+	if(fLocation !== null)
+	{
+		$(".site-content").css("height", "500px");
+		var width = $(".graph").width();
+		var height = $(".graph").height();
+		var color = d3.scale.category20();
+		$(".start").css("display", "none");
+		$(".neuron-graph").removeAttr("style");
+		var force = d3.layout.force()
+			.charge(-120)
+			.linkDistance(50)
+			.size([width, height]);
+		var svg = d3.select(".graph");
+		d3.json(fLocation, function(error, graph)
+		{
+			if(error){ throw error; }
+			force
+				.nodes(graph.id)
+				.links(graph.Links)
+				.start();
+			var link = svg.selectAll(".link")
+				.data(graph.Links)
+				.enter().append("line")
+				.attr("class", "link")
+				.style("stroke-width", function(d) { return Math.sqrt(d.value); });
+			var node = svg.selectAll(".node")
+				.data(graph.id)
+				.enter().append("circle")
+					.attr("class", "neuron")
+					.attr("r", 10)
+					.style("fill", color(1))
+					.call(force.drag);
+			force.on("tick", function()
+			{
+				link.attr("x1", function(d) { return d.source.x; })
+					.attr("y1", function(d) { return d.source.y; })
+					.attr("x2", function(d) { return d.target.x; })
+					.attr("y2", function(d) { return d.target.y; });
+				node.attr("cx", function(d) { return d.x; })
+					.attr("cy", function(d) { return d.y; });
+			});
+		});
+	}
 }

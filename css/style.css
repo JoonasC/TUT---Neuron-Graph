@@ -11,6 +11,9 @@
 	margin: 0;
 	padding: 0;
 }
+html, body {
+	height: 100%;
+}
 body {
 	background-color: #F7F7F7;
 	padding-top: 104px;
@@ -121,6 +124,18 @@ a:hover {
 	border-radius: 2px;
 	color: #FFFFFF;
 	font-family: Quicksand;
+}
+.graph {
+	width: 800px;
+	height: 500px;
+}
+.neuron {
+	stroke: #FFFFFF;
+	stroke-width: 1.5px;
+}
+.link {
+	stroke: #999999;
+	stroke-opacity: .6;
 }
 .maxlength-2 {
 	width: 25px;
