@@ -1,15 +1,15 @@
 {
     "id": [
-        {"name": "Neuron0"}, 
-        {"name": "Neuron1"}, 
-        {"name": "Neuron2"}, 
-        {"name": "Neuron3"}, 
-        {"name": "Neuron4"}, 
-        {"name": "Neuron5"}, 
-        {"name": "Neuron6"}, 
-        {"name": "Neuron7"}, 
-        {"name": "Neuron8"}, 
-        {"name": "Neuron9"}
+        {"name": "Neuron0","x":10,"y":20}, 
+        {"name": "Neuron1","x":80,"y":20}, 
+        {"name": "Neuron2","x":150,"y":20}, 
+        {"name": "Neuron3","x":230,"y":50}, 
+        {"name": "Neuron4","x":300,"y":40}, 
+        {"name": "Neuron5","x":360,"y":30}, 
+        {"name": "Neuron6","x":10,"y":100}, 
+        {"name": "Neuron7","x":80,"y":100}, 
+        {"name": "Neuron8","x":150,"y":100}, 
+        {"name": "Neuron9","x":230,"y":100}
     ], 
     "Links": [
         {"source":0,"target":9,"value":41}, 

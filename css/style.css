@@ -25,6 +25,7 @@ body {
 	width: 100%;
 	position: fixed;
 	top: 0;
+	z-index: 10;
 }
 .logo-header {
 	display: inline-block;
@@ -46,11 +47,15 @@ body {
 .text {
 	font-family: Quicksand;
 }
-.help-text {
-	color: #00AED1;
+.zoom-text {
+	margin: 0 auto;
+	margin-right: 15px;
 }
 .margin-bottom {
 	margin-bottom: 15px;
+}
+.margin-left {
+	margin-left: 15px;
 }
 .margin-right {
 	margin-right: 5px;
@@ -60,9 +65,6 @@ body {
 }
 .align-top {
 	vertical-align: top;
-}
-.lowercase {
-	text-transform: lowercase;
 }
 .start-button {
 	background-color: #00AED1;
@@ -81,16 +83,6 @@ body {
 	padding-top: 5px;
 	box-shadow: 0 3px 0 #00667A;
 }
-.neuron-box {
-	border: 1px solid #00667A;
-	width: 420px;
-	margin: 0 auto;
-	background-color: #A7E6F2;
-	cursor: move;
-}
-.separator-div {
-	margin-bottom: 10px;
-}
 a {
 	text-decoration: none;
 	color: #00AED1;
@@ -103,34 +95,9 @@ a {
 a:hover {
 	color: #00667A;
 }
-.box-control {
-	float: right;
-	background-color: #00AED1;
-	color: #00667A;
-	padding: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	border-left: 1px solid #00667A;
-	border-bottom: 1px solid #00667A;
-}
-.box-control:hover {
-	color: #00AED1;
-	background-color: #00667A;
-}
-.main {
-	border: 1px solid 
-}
-.textbox {
-	margin-left: 5px;
-	background-color: #00AED1;
-	border: 1px solid #00667A;
-	border-radius: 2px;
-	color: #FFFFFF;
-	font-family: Quicksand;
-}
 .graph {
-	width: 800px;
-	height: 500px;
+	width: 500px;
+	height: 800px;
 }
 .neuron {
 	stroke: #FFFFFF;
@@ -139,46 +106,14 @@ a:hover {
 .link {
 	stroke: #999999;
 	stroke-opacity: .6;
-}
-.checkbox-button {
-	box-shadow: 0 0 2px #000000;
-	color: #000000;
-	border-radius: 100px;
-	font-family: Quicksand;
 	transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-o-transition: all 0.5s;
 }
-.checkbox-button:hover {
-	color: #00AED1;
-}
-.checkbox-button-off {
-	background-color: #FF0000;
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	border: 5px solid #E3E3E3;
-}
-.checkbox-button-on {
-	background-color: #00FF11;
-	border: 1px solid #E3E3E3;
-	padding-left: 9px;
-	padding-right: 9px;
-	padding-top: 6px;
-	padding-bottom: 6px
-}
-.maxlength-2 {
-	width: 25px;
-	text-align: center;
-	text-transform: uppercase;
-}
-.select {
-	background-color: #00AED1;
-	border: 1px solid #00667A;
-	color: #FFFFFF;
-	border-radius: 2px;
+.link:hover {
+	stroke: #FF8000;
+	stroke-opacity: none;
 }
 .footer {
 	height: 50px;
@@ -192,4 +127,13 @@ a:hover {
 .footer-text {
 	margin-top: 13px;
 	font-size: 18px;
+}
+.ui-slider-horizontal {
+	height: 8px;
+	width: 200px;
+}
+.ui-slider .ui-slider-handle {
+	height: 15px;
+	width: 10px;
+	padding-left: 10px;
 }

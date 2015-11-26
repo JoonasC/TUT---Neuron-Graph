@@ -1,132 +1,68 @@
 //Copyright © TUT 2015
-var lastElement = "";
-var physics = "on";
-function unsuppressClick()
+var currNumber = 0;
+var firstTime = true;
+var gScale = 1;
+var gTranslate = "39, 105";
+function zoomSlider(scale)
 {
-	$(lastElement).children(".main").removeClass("suppress-click")
+	var zoomElement = d3.select(".graph");
+	var zoomContainer = d3.select(".graph").select("g").select("g");
+	zoomContainer.attr("transform", "translate(" + gTranslate + ")scale(" + scale + ")");
+	gScale = scale;
 }
 $(document).ready(function()
 {
-	$(".link-help").click(function()
-	{
-		$(this).parent().parent().parent().css("height", "");
-		$(".link-help-text").fadeToggle();
-	});
-	$(".neuron-box").draggable({ containment: ".site-content", start: function(event, ui){ if(typeof $(this).children(".main").attr("style") == typeof undefined){ $(this).children(".main").addClass("suppress-click") } }, stop: function(event, ui){ if($(this).children(".main").hasClass("suppress-click")){ lastElement = $(this); setTimeout(unsuppressClick, 100); } } });
-	$(".second").click(function()
-	{
-		if(typeof $(this).parent().parent().attr("hidden") == typeof undefined)
-		{
-			$(this).parent().parent().fadeOut(function()
-			{
-				$(this).parent().css("width", "10px");
-				$(this).parent().css("height", "10px");
-				$(this).parent().css("border", "none");
-				$(this).parent().children(".main").fadeIn(function()
-				{
-					$(this).parent().children(".main").removeAttr("style");
-				});
-				$(this).attr("hidden", "true");
-			});
-		}
-	});
-	$(".main").click(function()
-	{
-		if(!$(this).hasClass("suppress-click"))
-		{
-			if(typeof $(this).parent().children().children().parent().attr("hidden") !== typeof undefined)
-			{
-				$(this).parent().css("width", "");
-				$(this).parent().css("height", "");
-				$(this).parent().css("border", "");
-				$(this).parent().children(".main").css("display", "none");
-				$(this).parent().children().children().parent().fadeIn(function()
-				{
-					$(this).removeAttr("hidden");
-				});
-			}
-		}
-	});
+	$(".slider").slider({ orientation: "horizontal", range: "min", min: 1000, max: 10000, value: 1000, width: 100, slide: function(event, ui){ zoomSlider(ui.value/1000); } });
 });
-function gCreate()
-{
-	
-}
-function togglePhysics()
-{
-	if(physics == "on")
-	{
-		d3.selectAll(".neuron")
-			.classed("fixed", function(d){ d.fixed = true });
-		$(".checkbox-button").removeClass("checkbox-button-on");
-		$(".checkbox-button").addClass("checkbox-button-off");
-		$(".indicator").fadeOut(250, function()
-		{
-			$(".indicator").text("X");
-			$(".indicator").fadeIn(250);
-		});
-		physics = "off";
-	}
-	else if(physics == "off")
-	{
-		d3.selectAll(".neuron")
-			.classed("fixed", function(d){ d.fixed = false });
-		$(".checkbox-button").removeClass("checkbox-button-off");
-		$(".checkbox-button").addClass("checkbox-button-on");
-		$(".indicator").fadeOut(250, function()
-		{
-			$(".indicator").text("\u2713");
-			$(".indicator").fadeIn(250);
-		});
-		physics = "on";
-	}
-}
 function gOpen()
 {
 	var fLocation = window.prompt("Please enter the name of the json file(make sure the file is in the same directory):");
 	if(fLocation !== null)
 	{
-		$(".site-content").css("height", "500px");
-		var width = $(".graph").width();
-		var height = $(".graph").height();
+		$(".site-content").css("height", "800px");
 		var color = d3.scale.category20();
 		$(".start").css("display", "none");
 		$(".neuron-graph").removeAttr("style");
-		var force = d3.layout.force()
-			.charge(-1550)
-			.linkDistance(300)
-			.size([width, height]);
 		var svg = d3.select(".graph");
+		function panGraph()
+		{
+			gTranslate = d3.event.translate;
+			d3.select(".graph").select("g").select("g").attr("transform", "translate(" + d3.event.translate + ")scale(" + gScale + ")");
+		}
+		var zoom = d3.behavior.zoom()
+				.on("zoom", panGraph);
 		d3.json(fLocation, function(error, graph)
 		{
 			if(error){ throw error; }
-			force
-				.nodes(graph.id)
-				.links(graph.Links)
-				.start();
-			var link = svg.selectAll(".link")
-				.data(graph.Links)
-				.enter().append("line")
-				.attr("class", "link")
-				.style("stroke-width", 1);
-			var neuron = svg.selectAll(".neuron")
+			svg.append("g")
+				.call(zoom)
+				.append("rect")
+				.attr("width", $(".graph").width())
+				.attr("height", $(".graph").height())
+				.style("fill", "none")
+				.style("pointer-events", "all");
+			svg.select("g").append("g");
+			var svgContainer = d3.select(".graph").select("g").select("g");
+			var neuron = svgContainer.selectAll(".neuron")
 				.data(graph.id)
 				.enter().append("circle")
 					.attr("class", "neuron")
 					.attr("r", 10)
 					.style("fill", color(1))
-					.call(force.drag);
+					.attr("cx", function(d){ return d.x; })
+					.attr("cy", function(d){ return d.y; })
+					.attr("id", function(d){ if(firstTime == true){ firstTime = false; return currNumber; }else if(firstTime == false){ currNumber += 1; return currNumber; } });
+			var link = svgContainer.selectAll(".link")
+				.data(graph.Links)
+				.enter().append("line")
+				.attr("class", "link")
+				.style("stroke-width", 1)
+				.attr("x1", function(d) { return $("#" + d.source).attr("cx"); })
+				.attr("x2", function(d) { return $("#" + d.target).attr("cx"); })
+				.attr("y1", function(d) { return $("#" + d.source).attr("cy"); })
+				.attr("y2", function(d) { return $("#" + d.target).attr("cy"); });
 			neuron.append("title")
 				.text(function(d){ return d.name; });
-			force.on("tick", function()
-			{
-				link.attr("x1", function(d) { return d.source.x; })
-					.attr("y1", function(d) { return d.source.y; })
-					.attr("x2", function(d) { return d.target.x; })
-					.attr("y2", function(d) { return d.target.y; });
-				neuron.attr("cx", function(d) { return d.x; })
-					.attr("cy", function(d) { return d.y; });
-			});
 		});
 	}
 }
