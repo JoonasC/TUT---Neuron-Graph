@@ -97,7 +97,8 @@ a:hover {
 }
 .graph {
 	width: 800px;
-	height: 800px;
+	height: 400px;
+	border: 1px solid #00667A;
 }
 .neuron {
 	stroke: #FFFFFF;
@@ -113,7 +114,6 @@ a:hover {
 }
 .link:hover {
 	stroke: #FF8000;
-	stroke-opacity: none;
 }
 .footer {
 	height: 50px;
@@ -136,4 +136,15 @@ a:hover {
 	height: 15px;
 	width: 10px;
 	padding-left: 10px;
+}
+@media screen and (max-width: 800px) {
+	.graph {
+		width: 95%;
+	}
+}
+@media screen and (max-width: 422px) {
+	.header-text {
+		font-family: Quicksand;
+		font-size: 20px;
+	}
 }
