@@ -5,6 +5,7 @@ var firstTime = true;
 var firstTime2 = true;
 var gScale = 0.1;
 var gTranslate = "390, 195";
+var lastClass = null;
 function zoomSlider(scale)
 {
 	var zoomElement = d3.select(".graph");
@@ -14,7 +15,17 @@ function zoomSlider(scale)
 }
 function neuronClick(id)
 {
-	alert("You clicked neuron number: " + id);
+	if(id == lastClass && lastClass !== null)
+	{
+		$("line").removeAttr("style");
+		lastClass = null;
+	}
+	else
+	{
+		$("line").removeAttr("style");
+		$(".conn" + id).css("stroke", "#FF8000");
+		lastClass = id;
+	}
 }
 $(document).ready(function()
 {
@@ -55,12 +66,12 @@ function gOpen()
 			var link = svgContainer.selectAll(".link")
 				.data(graph.Links)
 				.enter().append("line")
-					.attr("class", "link")
-					.style("stroke-width", 1);
+					.attr("id", "link")
+					.attr("class", function(d){ return "conn" + d.source + " conn" + d.target; });
 			var neuron = svgContainer.selectAll(".neuron")
 				.data(graph.id)
 				.enter().append("circle")
-					.attr("class", "neuron")
+					.attr("id", "neuron")
 					.attr("r", 10)
 					.style("fill", function(d){ return color(d.Group); })
 					.attr("cx", function(d){ return d.x; })
@@ -73,6 +84,8 @@ function gOpen()
 				.attr("y2", function(d) { return $("#" + d.target).attr("cy"); });
 			neuron.append("title")
 				.text(function(d){ return d.name; });
+			link.append("title")
+				.text(function(d){ return d.value + " connection(s)"; });
 		});
 	}
 }
