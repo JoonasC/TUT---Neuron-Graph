@@ -1,8 +1,8 @@
 //Copyright © TUT 2015
 var currNumber = 0;
 var firstTime = true;
-var gScale = 1;
-var gTranslate = "39, 105";
+var gScale = 0.1;
+var gTranslate = "193, 43";
 function zoomSlider(scale)
 {
 	var zoomElement = d3.select(".graph");
@@ -12,7 +12,7 @@ function zoomSlider(scale)
 }
 $(document).ready(function()
 {
-	$(".slider").slider({ orientation: "horizontal", range: "min", min: 1000, max: 10000, value: 1000, width: 100, slide: function(event, ui){ zoomSlider(ui.value/1000); } });
+	$(".slider").slider({ orientation: "horizontal", range: "min", min: 100, max: 10000, value: 100, width: 100, slide: function(event, ui){ zoomSlider(ui.value/1000); } });
 });
 function gOpen()
 {
@@ -41,7 +41,9 @@ function gOpen()
 				.attr("height", $(".graph").height())
 				.style("fill", "none")
 				.style("pointer-events", "all");
-			svg.select("g").append("g");
+			svg.select("g")
+				.append("g")
+				.attr("transform", "translate(" + gTranslate + ")scale(0.1)");
 			var svgContainer = d3.select(".graph").select("g").select("g");
 			var neuron = svgContainer.selectAll(".neuron")
 				.data(graph.id)
