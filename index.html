@@ -15,17 +15,18 @@
 <body>
 <div class="site-container">
 	<div class="header">
-		<a href="#"><img class="logo-header" src="images/logo.png"></a>
+		<a href="http://www.tut.fi/en/home" target="new"><img class="logo-header" src="images/logo.png"></a>
 		<h1 class="header-text">TUT - Neuron Graph</h1>
 	</div>
 	<div class="site-content">
 		<div class="start">
 			<p class="text margin-bottom">Welcome to the TUT - Neuron Graph site.</p>
-			<a href="#" class="start-button" onclick="gOpen();">Open a graph</a>
+			<a href="#" class="button" onclick="gOpen();">Open a graph</a>
 		</div>
 		<div class="neuron-graph" style="display: none;">
 			<div class="toolbox align-top">
 				<p class="text display-inline-block zoom-text">Zoom: - </p><div class="slider display-inline-block"></div><p class="text display-inline-block margin-left"> +</p>
+				<a href="#" class="button" onclick="location.reload();">Back to main page</a>
 			</div>
 			<svg class="graph">
 			</svg>

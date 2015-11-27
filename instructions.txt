@@ -1,0 +1,12 @@
+TUT - Neuron Graph instructions:
+*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
+- To visualize the graph you need a json file, which contains all the neurons and links between them.
+- To open a graph make sure the file you want to open is in the graphs folder in the same directory as the files, and then click on "Open a graph" and type the name of the json file in the box that pops up.
+- When the graph is shown you can pan around by dragging the the graph and zoom using the zoom slider.
+- Putting your mouse on a link will highlight that link and show the connections that link represents.
+- Clicking on a neuron will highlight all the links that connect to that neuron.
+- Hovering over a neuron will show the name of that neuron.
+*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
+To do:
+- Set up php file upload to be able to open graphs if the site is on a web server.
+- Show info about link type: axon or dendrite.
